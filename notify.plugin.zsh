@@ -1,5 +1,5 @@
 # vim: set nowrap filetype=zsh:
-# 
+#
 # See README.md.
 #
 fpath=($fpath `dirname $0`)
@@ -13,7 +13,7 @@ fpath=($fpath `dirname $0`)
 function notify-error {
   local icon
   icon="/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AlertStopIcon.icns"
-  notify-if-background -t "#fail" --image "$icon" < /dev/stdin &!
+  notify-if-background -t "#fail" --icon "$icon" --sound Blow < /dev/stdin &!
 }
 
 # Notify of successful command termination, but only if it took at least
@@ -27,7 +27,7 @@ function notify-success() {
 
   ((diff = $now - $start_time ))
   if (( $diff > $NOTIFY_COMMAND_COMPLETE_TIMEOUT )); then
-    notify-if-background -t "#win" <<< "$last_command" &!
+    notify-if-background -t "#win" --sound default <<< "$last_command" &!
   fi
 }
 
